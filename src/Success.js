@@ -1,17 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { useLocation } from 'react-router-dom';
+import './Form.css';  // Use the same CSS file
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const Success = () => {
+  const location = useLocation();
+  const { formData } = location.state;
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  return (
+    <div>
+      <h1>Form Submitted Successfully</h1>
+      <ul>
+        {Object.entries(formData).map(([key, value]) => (
+          <li key={key}><strong>{key}:</strong> {value}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default Success;
+
+
